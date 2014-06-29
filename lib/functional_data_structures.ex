@@ -47,7 +47,7 @@ defmodule FunctionalDataStructures do
     chain.(acc)
   end
 
-  def foldRightUsingLeft(l, acc, f), do: foldLeft(reverse(l), acc, f)
+  def foldRightUsingLeft(l, acc, f), do: reverse(l) |> foldLeft(acc, f)
 
   def append(l, m), do: List.foldr(l, m, &([&1 | &2]))
 
