@@ -37,7 +37,7 @@ defmodule FunctionalDataStructures do
   # The chain_accumulator passed into foldr is a function which means the
   # foldr produces a chain of functions.  For input [x, y, z] it
   # would produce:
-  #   fn (b) -> f.x(f.y(f.z(b))) end
+  #   fn (b) -> f.z(f.y(f.x(b))) end
   # Then we evaluate this chain at the original acc value to get the final
   # result.
   def foldLeftUsingRight(l, acc, f) do
