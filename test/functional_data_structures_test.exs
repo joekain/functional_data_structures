@@ -80,4 +80,36 @@ defmodule FunctionalDataStructuresTest do
   test "concat list of lists into a single list" do
     assert L.concat([[1,2],[3],[],[4,5,6]]) == [1,2,3,4,5,6]
   end
+
+  test "list by adding 1 to each element" do
+    assert L.add_1([1, 2, 3, 4]) == [2, 3, 4, 5]
+  end
+
+  test "list by converting each element of type float to a string" do
+    assert L.to_list_of_strings([1.0, 2.0, 3.0]) == ["1.0", "2.0", "3.0"]
+  end
+
+  test "map a list" do
+    assert L.map([1, 2, 3, 4], &(&1 + 2)) == [3, 4, 5 ,6]
+  end
+
+  test "filter even elements of a list" do
+    assert L.filter([1, 2, 3, 4, 5], &(rem(&1, 2) == 0)) == [2, 4]
+  end
+
+  test "flatMap" do
+    assert L.flatMap([1, 2, 3], &([&1, &1])) == [1, 1, 2, 2, 3, 3]
+  end
+
+  test "filter using flatMap" do
+    assert L.filterUsingFlatMap([1, 2, 3, 4, 5], &(rem(&1, 2) == 0)) == [2, 4]
+  end
+
+  test "sum across lists" do
+    assert L.sum_across_lists([1, 2, 3], [4, 5, 6]) == [5, 7, 9]
+  end
+
+  test "function over pairs across lists" do
+    assert L.across_lists([1, 2, 3], [4, 5, 6], &(&1 - &2)) == [-3, -3, -3]
+  end
 end

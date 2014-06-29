@@ -53,4 +53,33 @@ defmodule FunctionalDataStructures do
 
   def concat([]), do: []
   def concat([head_list | tail]), do: append(head_list, concat(tail))
+
+  def add_1([]), do: []
+  def add_1([h | t]), do: [h + 1 | add_1(t)]
+
+  def to_list_of_strings([]), do: []
+  def to_list_of_strings([h | t]), do: [to_string(h) | to_list_of_strings(t)]
+
+  def map(l, f), do: List.foldr(l, [], fn (x, acc) -> [f.(x) | acc] end)
+
+  def filter([], _f), do: []
+  def filter([h | t], f) do
+    if f.(h) do
+      [h | filter(t, f)]
+    else
+      filter(t, f)
+    end
+  end
+
+  def flatMap(l, f), do: map(l, f) |> concat
+
+  def filterUsingFlatMap(l, f), do: flatMap(l, fn (x) -> if f.(x), do: [x], else: [] end)
+
+  defp zip([], _m), do: []
+  defp zip(_l, []), do: []
+  defp zip([lh | lt], [mh | mt]), do: [{lh, mh} | zip(lt, mt)]
+
+  def sum_across_lists(l, m), do: zip(l, m) |> map(&( elem(&1, 0) + elem(&1, 1)))
+
+  def across_lists(l, m, f), do: zip(l, m) |> map(&(f.(elem(&1, 0), elem(&1, 1))))
 end
