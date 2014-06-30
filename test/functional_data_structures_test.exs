@@ -112,4 +112,17 @@ defmodule FunctionalDataStructuresTest do
   test "function over pairs across lists" do
     assert L.across_lists([1, 2, 3], [4, 5, 6], &(&1 - &2)) == [-3, -3, -3]
   end
+
+  test "subsequence" do
+    assert L.has_subsequence?([1, 2, 3, 4], [2,3]) == true
+  end
+
+  test "subsequence 2" do
+    assert L.has_subsequence?([1, 2, 3, 4], [1, 2]) == true
+  end
+
+  test "subsequence 3" do
+    assert L.has_subsequence?([1, 2, 3, 4], [4]) == true
+  end
+
 end

@@ -88,4 +88,11 @@ defmodule FunctionalDataStructures do
   def sum_across_lists(l, m), do: zip(l, m) |> map(&( elem(&1, 0) + elem(&1, 1)))
 
   def across_lists(l, m, f), do: zip(l, m) |> map(&(f.(elem(&1, 0), elem(&1, 1))))
+
+  def has_subsequence?([], []), do: true
+  def has_subsequence?([], _sub), do: false
+  def has_subsequence?([h | t], sub) do
+    (zip([h | t], sub) |> List.foldl(true, &(&2 && elem(&1, 0) == elem(&1, 1)))) ||
+      has_subsequence?(t, sub)
+  end
 end
