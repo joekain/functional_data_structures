@@ -60,6 +60,12 @@ defmodule FunctionalDataStructures do
   def to_list_of_strings([]), do: []
   def to_list_of_strings([h | t]), do: [to_string(h) | to_list_of_strings(t)]
 
+  # This was my first attempt, writing the direct recursive function.
+  # This is not tail recursion.
+  # def map([], f), do: []
+  # def map([h | t], f), do: [f.(h) | map(t, f)]
+
+  # Using foldr gives a more optimized solution
   def map(l, f), do: List.foldr(l, [], fn (x, acc) -> [f.(x) | acc] end)
 
   def filter([], _f), do: []
